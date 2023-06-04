@@ -10,16 +10,19 @@
 #
 # SPDX-License-Identifier: EPL-2.0
 
-
+# !pip install websocket-client
 import json
 import math
 import time
 import websocket
+import _thread
+import time
+# import rel
 
 import raspberry_thing
 
 DITTO_IP = "localhost"
-DITTO_PORT = "8000"
+DITTO_PORT = "8080"
 websocketOpen = False
 thing = raspberry_thing.RaspberryDemoThing()
 
@@ -69,7 +72,7 @@ def on_open(ws):
 
 def start_websocket():
     print('Establishing websocket connection ...')
-    ws_address = "ws://" + DITTO_IP + ":" + DITTO_PORT + "/ws/1"
+    ws_address = "ws://" + DITTO_IP + ":" + DITTO_PORT + "/ws/2"
     basic_auth = 'Authorization: Basic {}'.format(raspberry_thing.get_b64_auth())
     global ws
     ws = websocket.WebSocketApp(ws_address,

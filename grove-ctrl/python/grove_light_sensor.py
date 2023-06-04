@@ -9,9 +9,9 @@
 #
 # SPDX-License-Identifier: EPL-2.0
 
-import grovepi
+# import grovepi
 from datetime import datetime
-
+import random
 
 class LightSensor:
     """A simple abstraction for using the grovepi light sensor"""
@@ -21,11 +21,13 @@ class LightSensor:
     def __init__(self, analogPort, samplingRate=1):
         self.port = analogPort
         self.samplingRate = samplingRate
-        grovepi.pinMode(self.port, "INPUT")
+        # grovepi.pinMode(self.port, "INPUT")
+        print("rovepi.pinMode(self.port, INPUT)")
 
     def get_illumination(self):
         self.lastUpdate = datetime.now().__str__()
-        return grovepi.analogRead(self.port)
+        return random.randrange(100)
+        # return grovepi.analogRead(self.port)
 
     def get_sampling_rate(self):
         return self.samplingRate

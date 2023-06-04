@@ -8,7 +8,7 @@
 # http://www.eclipse.org/legal/epl-2.0
 #
 # SPDX-License-Identifier: EPL-2.0
-import grovepi
+# import grovepi
 
 
 class Buzzer:
@@ -18,7 +18,8 @@ class Buzzer:
     def __init__(self, digitalPort, enabled=False):
         self.port = digitalPort
         self.enabled = enabled
-        grovepi.pinMode(self.port, "OUTPUT")
+        # grovepi.pinMode(self.port, "OUTPUT")
+        print("grovepi.pinMode(self.port, OUTPUT)" )
 
     def is_enabled(self):
         return self.enabled
@@ -26,4 +27,5 @@ class Buzzer:
     def set_enabled(self, enabled):
         self.enabled = enabled
         int_to_write = 1 if self.enabled else 0
-        grovepi.digitalWrite(self.port, int_to_write)
+        # grovepi.digitalWrite(self.port, int_to_write)
+        print("grovepi.digitalWrite(self.port, int_to_write)")

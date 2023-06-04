@@ -13,14 +13,14 @@
 import base64
 import threading
 import time
-
+import random
 from grove_buzzer import Buzzer
 from grove_light_sensor import LightSensor
 from grove_temp_sensor import TemperatureHumiditySensor
 
 # User and password needed for providing new sensor values
-THING_USER = "raspberry"
-THING_PASSWORD = "raspberry"
+THING_USER = "ditto"
+THING_PASSWORD = "ditto"
 # The id of our raspberry Thing
 THING_ID = "org.eclipse.ditto.example/raspberry"
 # Message / Event paths.
@@ -111,10 +111,12 @@ class RaspberryDemoThing:
             try:
                 # read sensor
                 illumination = self.lightSensor.get_illumination()
+                # illumination=random.randrange(100)
+                print(illumination)
                 # call callback
                 callback(illumination)
             except Exception:
-                print('Error when providing illumination values. Trying again')
+                print('1-Error when providing illumination values. Trying again')
             finally:
                 # wait for next read
                 time.sleep(1 / self.lightSensor.get_sampling_rate())
@@ -125,9 +127,11 @@ class RaspberryDemoThing:
                 # read sensor
                 [temperature, illumination] = self.tempSensor.get_temperature_and_humidity()
                 # call callback
+                # temperature=5
+                # illumination=7
                 callback(temperature, illumination)
             except Exception:
-                print('Error when providing illumination values. Trying again')
+                print('2-Error when providing illumination values. Trying again')
             finally:
                 # wait for next read
                 time.sleep(1 / self.tempSensor.get_sampling_rate())

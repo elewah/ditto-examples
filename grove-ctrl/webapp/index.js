@@ -99,13 +99,13 @@ class App {
     }
 
     requestGetAttributes(success, error) {
-        $.getJSON(`${this.baseUrl}/api/1/things/${this.thingId}/attributes`)
+        $.getJSON(`${this.baseUrl}/api/2/things/${this.thingId}/attributes`)
             .fail((jqXHR, textStatus, errorThrown) => { error(jqXHR, textStatus, errorThrown) })
             .done((data, textStatus, jqXHR) => { success(data, textStatus, jqXHR) })
     }
 
     requestGetFeature(featureId, success, error) {
-        $.getJSON(`${this.baseUrl}/api/1/things/${this.thingId}/features/${featureId}`)
+        $.getJSON(`${this.baseUrl}/api/2/things/${this.thingId}/features/${featureId}`)
             .fail((jqXHR, textStatus, errorThrown) => { error(jqXHR, textStatus, errorThrown) })
             .done((data, textStatus, jqXHR) => { success(data, textStatus, jqXHR) })
     }
@@ -114,7 +114,7 @@ class App {
     requestSetProperty(featureId, propertyId, data, success, error) {
         $.post({
             type: "PUT",
-            url: `${this.baseUrl}/api/1/things/${this.thingId}/features/${featureId}/properties/${propertyId}`,
+            url: `${this.baseUrl}/api/2/things/${this.thingId}/features/${featureId}/properties/${propertyId}`,
             data: data,
             contentType: "application/json; charset=utf-8",
         })
@@ -125,7 +125,7 @@ class App {
     requestMessageToFeature(featureId, messageSubject, data, success, error) {
         $.post({
             type: "POST",
-            url: `${this.baseUrl}/api/1/things/${this.thingId}/features/${featureId}/inbox/messages/${messageSubject}?timeout=0`,
+            url: `${this.baseUrl}/api/2/things/${this.thingId}/features/${featureId}/inbox/messages/${messageSubject}?timeout=0`,
             data: data,
             contentType: "application/json; charset=utf-8",
         })
@@ -194,7 +194,7 @@ class App {
 
     enableEventSource(enabled = true) {
         if (enabled) {
-            this.eventSource = new EventSource(`${this.baseUrl}/api/1/things?ids=${this.thingId}`)
+            this.eventSource = new EventSource(`${this.baseUrl}/api/2/things?ids=${this.thingId}`)
             this.eventSource.addEventListener('message', this.eventListener)
         } else if (this.eventSource != null) {
             this.eventSource.removeEventListener('message', this.eventListener)

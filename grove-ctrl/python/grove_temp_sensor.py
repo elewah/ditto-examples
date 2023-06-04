@@ -9,9 +9,9 @@
 #
 # SPDX-License-Identifier: EPL-2.0
 
-import grovepi
+# import grovepi
 from datetime import datetime
-
+import random
 
 class TemperatureHumiditySensor:
     """A simple abstraction for using the grovepi temperature and humidity sensor"""
@@ -26,7 +26,10 @@ class TemperatureHumiditySensor:
 
     def get_temperature_and_humidity(self):
         self.lastUpdate = datetime.now().__str__()
-        return grovepi.dht(self.port, self.module_type)
+        return random.randrange(100),random.randrange(100)
+        # return grovepi.dht(self.port, self.module_type)
+
+        # return grovepi.dht(self.port, self.module_type)
 
     def get_sampling_rate(self):
         return self.samplingRate
