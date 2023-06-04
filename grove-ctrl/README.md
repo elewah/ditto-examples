@@ -67,7 +67,7 @@ To be able to use it, we will use the REST API of Eclipse Ditto
 to create the Thing.
 
 ```bash
-curl -u ditto:ditto -X PUT -d '@resources/thing-model.json' 'http://localhost:8080/api/1/things/org.eclipse.ditto.example:raspberry'
+curl -u ditto:ditto -X PUT -H 'Content-Type: application/json' --data-binary  '@resources/thing-model.json'  'http://localhost:8080/api/2/things/org.eclipse.ditto.example:raspberry'
 ```
 
 This command will create the Thing in our running Eclipse Ditto
@@ -82,9 +82,10 @@ you want to use a different user/password, have a look at the [python/README.MD]
 
 The user should automatically be available after changing the contents of the `nginx.httpasswd`
 file. We can check it by using curl to retrieve the Thing with the raspberry user:
+## I couldn't create the raspberry user =(
 
 ```bash
-curl -u raspberry:raspberry -X GET 'http://localhost:8080/api/1/things/org.eclipse.ditto.example:raspberry'
+curl -u ditto:ditto -X GET 'http://localhost:8080/api/2/things/org.eclipse.ditto.example:raspberry'
 ```
 
 This should return JSON equal to the [thing-model](resources/thing-model.json).
